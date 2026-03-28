@@ -1,8 +1,10 @@
 import { BarChart, Folder, LayoutDashboard, Menu, PlusCircle } from 'lucide-react'
 import React, { useState } from 'react'
+import StudyForm from '../Study/StudyForm'
 
 const Sidebar = () => {
     const [collapsed, setCollapsed] = useState(false)
+    const [open, setOpen] = useState(false)
   return (
     <div className={`${collapsed ? "w-[80px] flex flex-col items-center" 
     : "w-[250px] shadow-md flex flex-col  justify-between "}`}>
@@ -34,10 +36,11 @@ const Sidebar = () => {
             <li className='flex gap-5 p-2 rounded-md bg-purple-300 text-purple-500'>
                 <PlusCircle/>
                 {!collapsed && (
-                    <span>Create Task</span>
+                    <button onClick={()=>setOpen(true)}>Create Task</button>
                 )}
             </li>
         </ul>
+        {open && <StudyForm onClose={()=>setOpen(false)}/>}
     </div>
   )
 }

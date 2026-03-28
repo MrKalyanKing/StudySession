@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import StudyForm from "../Study/StudyForm";
 
 
 
@@ -34,7 +35,7 @@ const WorkSpace = () => {
           </button>
       </div>
 
-     
+     {open && <StudyForm onClose={()=>setOpen(false)}/>}
     </>
   );
 };
