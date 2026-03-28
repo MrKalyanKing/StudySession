@@ -1,17 +1,36 @@
-import { createContext } from "react";
+import { createContext, useEffect, useState } from "react";
+
+export const SessionContext = createContext();
+
+export const SessionProvider = ({ children }) => {
+
+  const [sessions, setSessions] = useState([]);
+
+  
+  useEffect(() => {
+    const stored = JSON.parse(localStorage.getItem("postdata")) || [];
+    setSessions(stored);
+   
+  }, []);
+
+ 
+  useEffect(() => {
+    localStorage.setItem("postdata", JSON.stringify(sessions));
+  }, [sessions]);
 
 
-export const SessionContext=createContext()
+  const addSession = (newSession) => {
+    setSessions((prev) => [...prev, newSession]);
+  };
 
-export const AppContext=({children})=>{
-    const url=""
-    let studyData=[]
-    const data=localStorage.getItem("data")
-    console.log(data)
-    return(
 
-    <SessionContext.Provider value={{url,studyData}}>
-        {children}
+  const deleteSession = (index) => {
+    setSessions((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  return (
+    <SessionContext.Provider value={{ sessions, addSession, deleteSession }}>
+      {children}
     </SessionContext.Provider>
-    )
-}
+  );
+};

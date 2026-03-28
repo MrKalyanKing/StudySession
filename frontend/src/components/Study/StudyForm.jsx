@@ -2,10 +2,10 @@ import React, { useContext, useState } from "react";
 import { SessionContext } from "../Context/SessionContext";
 
 const StudyForm = ({ onClose }) => {
-//   const { studyData } = useContext(SessionContext);
+
 
   const [data, setData] = useState({
-    id:new Date(),
+    id: new Date(),
     name: "",
     subject: "DSA",
     priority: "low",
@@ -13,7 +13,7 @@ const StudyForm = ({ onClose }) => {
     date: "",
   });
 
- 
+  const {addSession}=useContext(SessionContext)
 
 
 
@@ -21,24 +21,12 @@ const StudyForm = ({ onClose }) => {
     const { name, value } = e.target;
     setData((prev) => ({ ...prev, [name]: value }));
   };
-const handleOnSubmit = (e) => {
-  e.preventDefault();
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+    addSession(data)
 
-  const existingPosts =
-    JSON.parse(localStorage.getItem("postdata")) || [];
-
-  const newPost = {
-    ...data,
-    // id: Date.now(),
+    onClose();
   };
-
-  const updatedPosts = [...existingPosts, newPost];
-
-  localStorage.setItem("postdata", JSON.stringify(updatedPosts));
-
-  onClose()
-
-};
   return (
     <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
       {/* Modal Box */}
@@ -90,9 +78,9 @@ const handleOnSubmit = (e) => {
                 value={data.priority}
                 onChange={handleOnChange}
               >
-                <option >Low</option>
-                <option >Medium</option>
-                <option >High</option>
+                <option>Low</option>
+                <option>Medium</option>
+                <option>High</option>
               </select>
             </div>
           </div>
