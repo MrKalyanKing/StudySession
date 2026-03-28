@@ -10,7 +10,7 @@ const StudyCard = () => {
 
   const {deleteSession,sessions}=useContext(SessionContext)
 
-  console.log(sessions)
+  
 
 
   const getPriorityColor = (priority) => {
