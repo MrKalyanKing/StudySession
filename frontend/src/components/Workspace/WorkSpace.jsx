@@ -8,7 +8,7 @@ const WorkSpace = () => {
 
   return (
     <>
-      <div className="flex w-full items-center h-30 justify-between bg-white px-6 py-5 mt-3 ml-2 gap-60 rounded-xl shadow-sm">
+      <div className="flex flex-col md:flex-row w-full items-start md:items-center justify-between bg-white px-6 py-5 mt-3 gap-4 rounded-xl shadow-sm">
 
 
         <div>

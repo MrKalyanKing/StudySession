@@ -28,9 +28,9 @@ const StudyForm = ({ onClose }) => {
     onClose();
   };
   return (
-    <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
       {/* Modal Box */}
-      <div className="bg-white rounded-xl p-6 w-[400px]">
+      <div className="bg-white rounded-2xl p-6 w-full max-w-md shadow-2xl animate-in zoom-in duration-200">
         <div className="flex justify-between mb-6">
           <h1 className="font-bold">Study Details</h1>
           <button className="cursor-pointer" onClick={onClose}>
