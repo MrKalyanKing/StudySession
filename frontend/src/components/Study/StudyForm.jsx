@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { SessionContext } from "../Context/SessionContext";
 
 const StudyForm = ({ onClose }) => {
-  const { studyData } = useContext(SessionContext);
+//   const { studyData } = useContext(SessionContext);
 
   const [data, setData] = useState({
     id:new Date(),
@@ -13,18 +13,32 @@ const StudyForm = ({ onClose }) => {
     date: "",
   });
 
+ 
+
+
+
   const handleOnChange = (e) => {
     const { name, value } = e.target;
     setData((prev) => ({ ...prev, [name]: value }));
   };
+const handleOnSubmit = (e) => {
+  e.preventDefault();
 
-  const handleOnSubmit=(e)=>{
-    e.preventDefault()
-    studyData.push(data)
-    localStorage.setItem("data",JSON.stringify(studyData))
-    // console.log(studyData)
-    onClose()
-  }
+  const existingPosts =
+    JSON.parse(localStorage.getItem("postdata")) || [];
+
+  const newPost = {
+    ...data,
+    // id: Date.now(),
+  };
+
+  const updatedPosts = [...existingPosts, newPost];
+
+  localStorage.setItem("postdata", JSON.stringify(updatedPosts));
+
+  onClose()
+
+};
   return (
     <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
       {/* Modal Box */}

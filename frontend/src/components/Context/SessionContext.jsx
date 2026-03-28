@@ -5,8 +5,9 @@ export const SessionContext=createContext()
 
 export const AppContext=({children})=>{
     const url=""
-    const studyData=[]
-
+    let studyData=[]
+    const data=localStorage.getItem("data")
+    console.log(data)
     return(
 
     <SessionContext.Provider value={{url,studyData}}>

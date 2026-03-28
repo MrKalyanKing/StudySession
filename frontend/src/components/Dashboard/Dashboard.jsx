@@ -2,6 +2,7 @@ import React from 'react'
 import Navbar from '../Navbar/Navbar'
 import Sidebar from '../Sidebar/Sidebar'
 import WorkSpace from '../Workspace/WorkSpace'
+import StudyCard from '../Study/StudyCard'
 
 const Dashboard = () => {
   return (
@@ -17,7 +18,7 @@ const Dashboard = () => {
             <div>
                 <WorkSpace/>
                 <div>
-                    <h1>StudyForm</h1>
+                    <StudyCard/>
                 </div>
             </div>
         </div>
