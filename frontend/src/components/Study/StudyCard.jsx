@@ -19,6 +19,18 @@ const StudyCard = () => {
     localStorage.setItem("postdata", JSON.stringify(updated));
   };
 
+  const getPriorityColor = (priority) => {
+  switch (priority?.toLowerCase()) {
+    case "high":
+      return "bg-red-100 text-red-600";
+    case "medium":
+      return "bg-yellow-100 text-yellow-600";
+    case "low":
+      return "bg-green-100 text-green-600";
+    default:
+      return "bg-gray-100 text-gray-600";
+  }
+};
   return (
     <div className="grid grid-cols-3 gap-5 mt-6">
       {data.map((elem, idx) => {
@@ -30,7 +42,7 @@ const StudyCard = () => {
             {/* Header */}
             <div className="flex justify-between items-center">
               <span className="text-sm text-gray-500">Project/Study</span>
-              <span className="text-xs px-2 py-1 bg-red-100 text-red-600 rounded-md">
+              <span className={`text-xs px-2 py-1 bg-red-10 rounded-md ${getPriorityColor(elem.priority)} `}>
                 {elem.priority}
               </span>
             </div>
