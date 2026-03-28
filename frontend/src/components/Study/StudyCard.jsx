@@ -1,23 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Trash, Eye } from "lucide-react";
 import StudyViewModal from "./StudyViewModal";
+import { SessionContext } from "../Context/SessionContext";
 
 const StudyCard = () => {
-  const [data, setData] = useState([]);
+
    const [selectedStudy, setSelectedStudy] = useState(null)
   const [open, setOpen] = useState(false)
 
-  useEffect(() => {
-    let stored = JSON.parse(localStorage.getItem("postdata")) || [];
-    setData(stored);
-  }, []);
+  const {deleteSession,sessions}=useContext(SessionContext)
 
-  // delete handler
-  const handleDelete = (index) => {
-    const updated = data.filter((_, i) => i !== index);
-    setData(updated);
-    localStorage.setItem("postdata", JSON.stringify(updated));
-  };
+  console.log(sessions)
+
 
   const getPriorityColor = (priority) => {
   switch (priority?.toLowerCase()) {
@@ -33,7 +27,7 @@ const StudyCard = () => {
 };
   return (
     <div className="grid grid-cols-3 gap-5 mt-6">
-      {data.map((elem, idx) => {
+      {sessions.map((elem, idx) => {
         return (
           <div
             key={idx}
@@ -93,7 +87,7 @@ const StudyCard = () => {
                 </button>
 
                 <button
-                  onClick={() => handleDelete(idx)}
+                  onClick={() => deleteSession(idx)}
                   className="text-red-500 cursor-pointer"
                 >
                   <Trash size={16} />
